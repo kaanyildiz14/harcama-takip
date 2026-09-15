@@ -42,3 +42,15 @@ def test_harcama_sil():
     harcama_id = database.harcamalari_getir()[0][0]
     database.harcama_sil(harcama_id)
     assert database.harcamalari_getir() == []
+
+
+@pytest.mark.parametrize("deger", ["nan", "inf", "-inf", "1e309", 0, -5])
+def test_gecersiz_tutar_kaydedilmez(deger):
+    with pytest.raises(ValueError):
+        database.harcama_ekle("Test", deger, "Yemek", "2026-09-15")
+    assert database.harcamalari_getir() == []
+
+
+def test_virgullu_tutar_kabul_edilir():
+    database.harcama_ekle("Öğle yemeği", "12,50", "Yemek", "2026-09-15")
+    assert database.harcamalari_getir()[0][2] == 12.5
