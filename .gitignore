@@ -10,3 +10,8 @@ dist/
 
 # Veritabani
 harcamalar.db
+
+# Sanal ortam ve test
+venv/
+.venv/
+.pytest_cache/

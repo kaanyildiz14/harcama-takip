@@ -1,7 +1,9 @@
 import sqlite3
 import os
 
-DB_PATH = os.path.join(os.path.dirname(__file__), "harcamalar.db")
+DB_PATH = os.environ.get(
+    "HARCAMA_DB", os.path.join(os.path.dirname(__file__), "harcamalar.db")
+)
 
 def baglanti():
     return sqlite3.connect(DB_PATH)
