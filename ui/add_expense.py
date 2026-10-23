@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtCore import QDate
 import database
+from amounts import tutar_dogrula
 
 KATEGORILER = ["Yemek", "Ulasim", "Alisveris", "Fatura", "Eglence", "Diger"]
 
@@ -44,9 +45,7 @@ class HarcamaEkleDialog(QDialog):
             QMessageBox.warning(self, "Hata", "Başlık boş olamaz.")
             return
         try:
-            miktar = float(miktar_str)
-            if miktar <= 0:
-                raise ValueError
+            miktar = tutar_dogrula(miktar_str)
         except ValueError:
             QMessageBox.warning(self, "Hata", "Geçerli bir miktar girin.")
             return

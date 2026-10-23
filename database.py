@@ -1,5 +1,6 @@
 import sqlite3
 import os
+from amounts import tutar_dogrula
 
 DB_PATH = os.environ.get(
     "HARCAMA_DB", os.path.join(os.path.dirname(__file__), "harcamalar.db")
@@ -21,6 +22,7 @@ def tablo_olustur():
         """)
 
 def harcama_ekle(baslik, miktar, kategori, tarih):
+    miktar = tutar_dogrula(miktar)
     with baglanti() as conn:
         conn.execute(
             "INSERT INTO harcamalar (baslik, miktar, kategori, tarih) VALUES (?, ?, ?, ?)",
