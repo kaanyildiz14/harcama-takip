@@ -15,6 +15,7 @@ Günlük harcamalarını kategorilere ayırarak kaydedebileceğin, grafikle anal
 ## ✨ Özellikler
 
 - **Harcama yönetimi:** Başlık, tutar, kategori ve tarih ile harcama ekleme/silme
+- **Akıllı tutar girişi:** `12,50` ve `12.50` ikisi de kabul edilir; sıfır, negatif, `NaN` ya da sonsuz gibi geçersiz değerler veritabanına hiç ulaşmaz
 - **Filtreleme:** Kategoriye göre listeleme ve anlık toplam hesaplama
 - **Pasta grafik:** `QPainter` ile sıfırdan çizilmiş, kategori dağılımını gösteren grafik
 - **CSV dışa aktarma:** Excel ile uyumlu (UTF-8 BOM) CSV çıktısı
@@ -59,6 +60,7 @@ harcama-takip/
 ├── main.py              # Uygulama giriş noktası
 ├── database.py          # SQLite CRUD işlemleri
 ├── api.py               # Döviz kuru servisi
+├── amounts.py           # Tutar doğrulama (virgüllü ondalık desteği)
 ├── ui/
 │   ├── main_window.py   # Ana pencere, tablo ve pasta grafik
 │   └── add_expense.py   # Harcama ekleme formu (doğrulamalı)
